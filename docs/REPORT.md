@@ -1,4 +1,4 @@
-# YesWeHack Rankings — Full Analysis Report
+# YesWeHack Rankings: Full Analysis Report
 
 **Source:** https://yeswehack.com/ranking (period = All-time)
 **Date collected:** May 17, 2026
@@ -12,14 +12,14 @@
 
 The YesWeHack rankings page is a JavaScript-rendered SPA. Rather than scraping HTML, I opened the page in Firefox DevTools → Network tab → XHR filter → hard reload. Two API calls were immediately visible:
 
-- `GET https://api.yeswehack.com/ranking?page={n}` — paginated all-time leaderboard (25 hunters/page, 4 pages = 100 total)
-- `GET https://api.yeswehack.com/hunters/{slug}` — individual public hunter profile (nationality, impact, reports, join year, social links)
+- `GET https://api.yeswehack.com/ranking?page={n}` – paginated all-time leaderboard (25 hunters/page, 4 pages = 100 total)
+- `GET https://api.yeswehack.com/hunters/{slug}` – individual public hunter profile (nationality, impact, reports, join year, social links)
 
 ### Two-Phase Collection
 
-**Phase 1 — Rankings** (`/ranking?page=1..4`): fetched all 100 hunters with rank, points, username, slug, public-profile flag, KYC status, avatar. 4 requests, ~2 seconds total.
+**Phase 1: Rankings** (`/ranking?page=1..4`): fetched all 100 hunters with rank, points, username, slug, public-profile flag, KYC status, avatar. 4 requests, ~2 seconds total.
 
-**Phase 2 — Profile enrichment** (`/hunters/{slug}`): fetched each hunter's public profile page for nationality, nb_reports, impact score, joined_on year, Twitter, and website. Results:
+**Phase 2: Profile enrichment** (`/hunters/{slug}`): fetched each hunter's public profile page for nationality, nb_reports, impact score, joined_on year, Twitter, and website. Results:
 
 - **56/100 profiles retrieved successfully**
 - ~14 returned **404**: private profiles; the API intentionally hides them (expected behavior, not errors)
@@ -27,9 +27,9 @@ The YesWeHack rankings page is a JavaScript-rendered SPA. Rather than scraping H
 
 ### Ethical Scraping Practices
 
-- Self-identifying `User-Agent: ywh-research-scraper/1.0 (technical-assessment)` — does not impersonate a browser
+- Self-identifying `User-Agent: ywh-research-scraper/1.0 (technical-assessment)` does not impersonate a browser
 - 0.5s delay between requests in v1; 1.5s in v2 (after observing 429s)
-- `raise_for_status()` — fails loudly on unexpected errors
+- `raise_for_status()` fails loudly on unexpected errors
 - 404 and 429 logged and handled gracefully; scraper never crashed
 
 ---
@@ -63,8 +63,8 @@ The all-time leaderboard follows a sub-Zipfian power-law distribution. Points ar
 | Top 25 (25% of hunters) | **52.8%** |
 | Top 50 (50% of hunters) | **74.8%** |
 
-- **Gini coefficient: 0.387** — moderate inequality (0 = perfect equality, 1 = winner-takes-all)
-- **Rank-1 vs rank-2 gap: 3.16×** — rabhi (82,733 pts) is a strong outlier above Xel (26,148 pts)
+- **Gini coefficient: 0.387** – moderate inequality (0 = perfect equality, 1 = winner-takes-all)
+- **Rank-1 vs rank-2 gap: 3.16×** – rabhi (82,733 pts) is a strong outlier above Xel (26,148 pts)
 - **Rank-1 vs rank-100 gap: 33.6×**
 - **Power-law fit:** `log(points) = 10.82 − 0.63 × log(rank)`, log-log Pearson r = -0.983
 - **Exponent α = 0.63** (sub-Zipfian; a pure Zipf distribution has α ≈ 1.0)
@@ -98,7 +98,7 @@ From the 56 public profiles, 16 nationalities are represented. France dominates 
 
 ---
 
-## Observation 3: Quality vs. Quantity — More Reports Correlates with Lower Impact Score
+## Observation 3: Quality vs. Quantity: More Reports Correlates with Lower Impact Score
 
 This is the most counter-intuitive finding. Among the 56 hunters with profile data:
 
@@ -115,10 +115,10 @@ This is the most counter-intuitive finding. Among the 56 hunters with profile da
 | n1nj4sec | 87 | 24.54 | 135 | 0.182 |
 | mheranco | 81 | 24.63 | 143 | 0.172 |
 
-**For comparison — rank 1 (rabhi, volume strategy):**
+**For comparison, rank 1 (rabhi, volume strategy):**
 82,733 points from 5,522 reports → impact score 17.11 → **0.003 impact/report**
 
-**Interpretation:** Two completely distinct paths to the top-100 exist on YesWeHack. Volume hunters (like rabhi) accumulate points through sheer number of reports over many years. Quality hunters (Mekky, Nishacid, Aethlios) have far fewer reports but each report has significantly higher severity and precision. Critically, the quality hunters are concentrated in ranks 80–92 — they are elite by impact score but not yet by total points, suggesting high future potential. YesWeHack's scoring system rewards both strategies, which is a healthy design.
+**Interpretation:** Two completely distinct paths to the top-100 exist on YesWeHack. Volume hunters (like rabhi) accumulate points through sheer number of reports over many years. Quality hunters (Mekky, Nishacid, Aethlios) have far fewer reports but each report has significantly higher severity and precision. Critically, the quality hunters are concentrated in ranks 80–92, they are elite by impact score but not yet by total points, suggesting high future potential. YesWeHack's scoring system rewards both strategies, which is a healthy design.
 
 **Implication:** A hunter's optimal strategy depends on their time horizon and specialization depth. New hunters aiming for the top-100 may find the quality path more accessible than competing with a decade of volume accumulation.
 
@@ -126,7 +126,7 @@ This is the most counter-intuitive finding. Among the 56 hunters with profile da
 
 ## Observation 4: Platform Seniority Does Not Significantly Predict Current Ranking
 
-**Spearman ρ = -0.164, p = 0.226 — not statistically significant.**
+**Spearman ρ = -0.164, p = 0.226 – not statistically significant.**
 
 Mean points by join year (from 56 profiles with join data):
 
@@ -168,10 +168,10 @@ Used Mann-Whitney U rather than a t-test because the points distribution is heav
 
 The analyzer script produces a 4-panel figure (`rankings_analysis.png`):
 
-- **Panel 1 (top-left):** Points by rank on log scale — visual confirmation of the power-law shape and rabhi's outlier status
-- **Panel 2 (top-right):** Nationality distribution bar chart — French dominance immediately visible
-- **Panel 3 (bottom-left):** Impact score vs report count scatter — negative correlation (ρ = −0.352) illustrates the quality/quantity split
-- **Panel 4 (bottom-right):** Platform seniority bubble chart — 2016 cohort inflated by rabhi; 2024 joiners already competitive
+- **Panel 1 (top-left):** Points by rank on log scale – visual confirmation of the power-law shape and rabhi's outlier status
+- **Panel 2 (top-right):** Nationality distribution bar chart – French dominance immediately visible
+- **Panel 3 (bottom-left):** Impact score vs report count scatter – negative correlation (ρ = −0.352) illustrates the quality/quantity split
+- **Panel 4 (bottom-right):** Platform seniority bubble chart – 2016 cohort inflated by rabhi; 2024 joiners already competitive
 
 ---
 
