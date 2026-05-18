@@ -122,7 +122,7 @@ Most concentration is driven by a single long-tenured outlier (rabhi, since 2016
 
 ### 3. Quality vs. quantity: statistically significant
 
-**Spearman ρ = −0.352, p = 0.008** between report count and impact score.
+**Spearman ρ = -0.352, p = 0.008** between report count and impact score.
 
 | Strategy | Example | Reports | Impact/Report |
 |---|---|---|---|
@@ -133,7 +133,7 @@ Two distinct paths to the top-100. The "quality" hunters cluster in ranks 80–9
 
 ### 4. Seniority is not destiny
 
-Spearman ρ = −0.164, p = 0.226. **Not statistically significant.**
+Spearman ρ = -0.164, p = 0.226. **Not statistically significant.**
 2024 joiners (mean 6,546 pts) are already competitive with the 2021 cohort (6,219 pts).
 
 ### 5. Public profile has no effect on points
