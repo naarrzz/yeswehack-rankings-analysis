@@ -13,11 +13,11 @@
 I reverse-engineered YesWeHack's public ranking API via browser DevTools, built an ethical two-phase scraper, collected data on 100 hunters (56 enriched with profile data), and ran statistical tests to surface five non-obvious findings about the platform's competitive landscape.
 
 **Highlights:**
-- The leaderboard follows a **sub-Zipfian power law** (α = 0.63) — top-1 hunter alone holds **12.7%** of all points
-- **French dominance is real but caveated**: 64% of public profiles are French, consistent with the platform's Paris origins
-- **Quality vs. quantity** is a statistically significant split (Spearman ρ = −0.352, p = 0.008) — high-impact hunters have *fewer* reports, not more
-- **Seniority does not predict ranking** — 2024 joiners are already competitive with the 2021 cohort
-- **Public-profile status has no measurable effect on points** (Mann-Whitney U, p = 0.574) — the platform doesn't structurally reward self-promotion
+- The leaderboard follows a **sub-Zipfian power law** (α = 0.63) – top-1 hunter alone holds **12.7%** of all points
+- **French dominance is real but caveated** – 64% of public profiles are French, consistent with the platform's Paris origins
+- **Quality vs. quantity** is a statistically significant split (Spearman ρ = −0.352, p = 0.008) – high-impact hunters have *fewer* reports, not more
+- **Seniority does not predict ranking** – 2024 joiners are already competitive with the 2021 cohort
+- **Public-profile status has no measurable effect on points** (Mann-Whitney U, p = 0.574) – the platform doesn't structurally reward self-promotion
 
 Full write-up in [`docs/REPORT.md`](docs/REPORT.md).
 
