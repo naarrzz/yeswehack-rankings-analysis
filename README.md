@@ -49,8 +49,8 @@ The YesWeHack rankings page is a JavaScript-rendered SPA, so scraping HTML would
 - `GET /hunters/{slug}` — individual public profile (nationality, impact, reports, join year)
 
 ### 2. Two-phase collection
-- **Phase 1 — Rankings:** 4 requests, ~2 seconds total. 100 hunters collected.
-- **Phase 2 — Profile enrichment:** 100 requests with 1.5s delay. 56/100 profiles retrieved successfully; ~14 were private (404, expected), ~30 were rate-limited (429). Exponential backoff with `Retry-After` would recover these in a subsequent run.
+- **Phase 1 – Rankings:** 4 requests, ~2 seconds total. 100 hunters collected.
+- **Phase 2 – Profile enrichment:** 100 requests with 1.5s delay. 56/100 profiles retrieved successfully; ~14 were private (404, expected), ~30 were rate-limited (429). Exponential backoff with `Retry-After` would recover these in a subsequent run.
 
 ### 3. Ethical scraping
 - Self-identifying `User-Agent: ywh-research-scraper/1.0 (technical-assessment)` — no browser impersonation
