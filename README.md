@@ -149,10 +149,10 @@ Profile visibility does not confer a measurable points advantage, a fairness-pos
 
 | Panel | Description |
 |---|---|
-| **Top-left** | Points by rank on log scale — visual confirmation of the power-law shape and rabhi's outlier status |
-| **Top-right** | Nationality distribution bar chart — French dominance immediately visible |
-| **Bottom-left** | Impact score vs. report count scatter — negative correlation (ρ = −0.352) illustrates the quality/quantity split |
-| **Bottom-right** | Platform seniority bubble chart — 2016 cohort inflated by rabhi; 2024 joiners already competitive |
+| **Top-left** | Points by rank on log scale: visual confirmation of the power-law shape and rabhi's outlier status |
+| **Top-right** | Nationality distribution bar chart: French dominance immediately visible |
+| **Bottom-left** | Impact score vs. report count scatter: negative correlation (ρ = -0.352) illustrates the quality/quantity split |
+| **Bottom-right** | Platform seniority bubble chart: 2016 cohort inflated by rabhi; 2024 joiners already competitive |
 
 ---
 
